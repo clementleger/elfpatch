@@ -67,7 +67,6 @@ import mmap
 # expects to be run from the root of the pyelftools source tree
 sys.path[0:0] = ['.']
 
-from elftools.common.py3compat import bytes2str
 from elftools.elf.elffile import ELFFile
 from elftools.elf.elffile import Section
 from elftools.elf.sections import SymbolTableSection
@@ -82,7 +81,7 @@ def process_file(do_write, syms, filename):
         sect_text = elffile.get_section_by_name(text_name)
 
         if not sect_text:
-            print('  The file has no %s section' % bytes2str(text_name))
+            print('  The file has no %s section' % text_name.decode("utf-8"))
             return
 
         print('  %s section, sh_offset=%s sh_addr=%s' % (
